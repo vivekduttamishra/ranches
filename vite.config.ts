@@ -12,13 +12,15 @@ export default defineConfig({
     host: true
   },
   build: {
-    outDir: 'dist',
-    target: 'esnext',
+    // Redirect output to the requested external folder
+    outDir: '../ranches-dist',
+    // Required to be true when outDir is outside of root
     emptyOutDir: true,
+    target: 'esnext',
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'lucide-react'],
+          vendor: ['react', 'react-dom', 'lucide-react', 'react-router-dom'],
         }
       }
     }
