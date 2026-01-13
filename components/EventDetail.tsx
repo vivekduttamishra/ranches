@@ -1,21 +1,31 @@
 
 import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Calendar, MapPin, Clock, ArrowLeft, Share2, Info, Users, CheckCircle2 } from 'lucide-react';
 import { EVENTS_DB } from '../data/events';
 
-interface EventDetailProps {
-  eventId: string | null;
-  onBack: () => void;
-}
-
-export const EventDetail: React.FC<EventDetailProps> = ({ eventId, onBack }) => {
+export const EventDetail: React.FC = () => {
+  const { eventId } = useParams<{ eventId: string }>();
+  const navigate = useNavigate();
   const event = eventId ? EVENTS_DB[eventId] : null;
 
   if (!event) {
     return (
       <div className="py-32 bg-white min-h-screen text-center">
-        <h2 className="text-2xl font-bold">Event not found</h2>
-        <button onClick={onBack} className="mt-4 text-brand-green font-bold">Back to Events</button>
+        <div className="max-w-md mx-auto space-y-6 px-4">
+          <div className="w-24 h-24 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto">
+            <Info size={48} />
+          </div>
+          <h2 className="text-4xl font-outfit font-bold text-gray-900">Event Not Found</h2>
+          <p className="text-gray-500">The event you are looking for might have been moved or is no longer available.</p>
+          <button 
+            onClick={() => navigate('/events')} 
+            className="inline-flex items-center space-x-2 text-brand-green font-bold text-lg hover:underline"
+          >
+            <ArrowLeft size={20} />
+            <span>Back to All Events</span>
+          </button>
+        </div>
       </div>
     );
   }
@@ -29,7 +39,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ eventId, onBack }) => 
         
         <div className="absolute top-10 left-10 z-10">
           <button 
-            onClick={onBack}
+            onClick={() => navigate('/events')}
             className="flex items-center space-x-2 bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-2xl font-bold hover:bg-white/40 transition-all border border-white/20"
           >
             <ArrowLeft size={20} />

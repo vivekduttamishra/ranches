@@ -1,12 +1,9 @@
 
 import React from 'react';
-import { Calendar, Users, ShieldCheck, ArrowDownCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Calendar, ShieldCheck, ArrowDownCircle } from 'lucide-react';
 
-interface HeroProps {
-  onActionClick: () => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onActionClick }) => {
+export const Hero: React.FC = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center pt-24 pb-24 overflow-hidden bg-white">
       <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#6da634 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
@@ -31,13 +28,13 @@ export const Hero: React.FC<HeroProps> = ({ onActionClick }) => {
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-4">
-              <button
-                onClick={onActionClick}
+              <Link
+                to="/events"
                 className="px-10 py-5 bg-brand-green text-white rounded-2xl font-bold text-lg shadow-2xl shadow-green-200 hover:bg-green-700 hover:-translate-y-1 transition-all flex items-center space-x-3 active:scale-95 group"
               >
                 <span>View Community Events</span>
                 <ArrowDownCircle size={24} className="group-hover:translate-y-1 transition-transform" />
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -55,7 +52,6 @@ export const Hero: React.FC<HeroProps> = ({ onActionClick }) => {
                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent"></div>
                 </div>
                 
-                {/* Real-time Calendar with upcoming community dates */}
                 <div className="absolute bottom-8 left-6 right-6 bg-white/95 backdrop-blur-md p-6 rounded-[32px] shadow-2xl border border-brand-green/10">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-2 text-brand-green">

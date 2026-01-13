@@ -1,13 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Sparkles, ArrowRight } from 'lucide-react';
 import { ALL_EVENTS } from '../data/events';
 
-interface CommunityCarouselProps {
-  onEventClick: (id: string) => void;
-}
-
-export const CommunityCarousel: React.FC<CommunityCarouselProps> = ({ onEventClick }) => {
+export const CommunityCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -72,13 +69,13 @@ export const CommunityCarousel: React.FC<CommunityCarouselProps> = ({ onEventCli
                   {slide.description}
                 </p>
 
-                <button 
-                  onClick={() => onEventClick(slide.id)}
+                <Link 
+                  to={`/events/${slide.id}`}
                   className="inline-flex items-center space-x-3 bg-white text-gray-900 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-brand-green hover:text-white transition-all transform hover:-translate-y-1 shadow-2xl"
                 >
                   <span>Event Details</span>
                   <ArrowRight size={24} />
-                </button>
+                </Link>
               </div>
             </div>
           ))}

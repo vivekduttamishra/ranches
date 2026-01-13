@@ -1,13 +1,10 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Ticket, Sparkles } from 'lucide-react';
 import { ALL_EVENTS } from '../data/events';
 
-interface EventsPageProps {
-  onEventClick: (id: string) => void;
-}
-
-export const EventsPage: React.FC<EventsPageProps> = ({ onEventClick }) => {
+export const EventsPage: React.FC = () => {
   return (
     <section className="py-32 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,8 +23,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onEventClick }) => {
           {ALL_EVENTS.map((evt) => (
             <div 
               key={evt.id} 
-              className="bg-white rounded-[48px] overflow-hidden shadow-xl border border-gray-100 group cursor-pointer transform hover:-translate-y-1 transition-all"
-              onClick={() => onEventClick(evt.id)}
+              className="bg-white rounded-[48px] overflow-hidden shadow-xl border border-gray-100 group transform hover:-translate-y-1 transition-all"
             >
               <div className="p-10 md:p-14 space-y-8">
                 <div className="flex justify-between items-start">
@@ -62,10 +58,13 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onEventClick }) => {
                   </div>
                 </div>
 
-                <button className="w-full bg-gray-900 text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center space-x-3 hover:bg-brand-green transition-all shadow-lg active:scale-95">
+                <Link 
+                  to={`/events/${evt.id}`}
+                  className="w-full bg-gray-900 text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center space-x-3 hover:bg-brand-green transition-all shadow-lg active:scale-95"
+                >
                   <Ticket size={20} />
                   <span>View Details & Register</span>
-                </button>
+                </Link>
               </div>
             </div>
           ))}

@@ -1,22 +1,17 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-// Fix: Import View type from '../types' instead of '../App'
-import { View } from '../types';
 
-interface FooterProps {
-  onNavigate: (view: View) => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
           <div className="lg:col-span-5 space-y-10">
-            <div className="flex items-center cursor-pointer" onClick={() => onNavigate('home')}>
+            <Link to="/" className="flex items-center cursor-pointer">
                <img 
-                 src="logo.png" 
+                 src="/logo.png" 
                  alt="Mahaveer Ranches" 
                  className="h-16 w-auto brightness-0 invert opacity-90"
                  onError={(e) => {
@@ -28,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   <span className="text-white font-outfit font-bold text-2xl leading-none tracking-tight uppercase">MAHAVEER</span>
                   <span className="brand-green font-outfit font-bold text-3xl leading-none italic">Ranches</span>
                </div>
-            </div>
+            </Link>
             <p className="text-gray-400 leading-relaxed text-lg font-medium max-w-md">
               The Official portal for Mahaveer Ranches Apartment Owners Association. Representing over 1000+ vibrant families in Choodasandra, Hosa Road.
             </p>
@@ -44,10 +39,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-3">
             <h4 className="text-white font-bold mb-8 uppercase tracking-[0.2em] text-xs">Society Info</h4>
             <ul className="space-y-6 text-sm font-bold uppercase tracking-widest">
-              <li><button onClick={() => onNavigate('home')} className="hover:text-brand-green transition-colors">Home</button></li>
-              <li><button onClick={() => onNavigate('gallery')} className="hover:text-brand-green transition-colors">Gallery</button></li>
-              <li><button onClick={() => onNavigate('events')} className="hover:text-brand-green transition-colors">Events</button></li>
-              <li><button onClick={() => onNavigate('notices')} className="hover:text-brand-green transition-colors">Notices</button></li>
+              <li><Link to="/" className="hover:text-brand-green transition-colors">Home</Link></li>
+              <li><Link to="/gallery" className="hover:text-brand-green transition-colors">Gallery</Link></li>
+              <li><Link to="/events" className="hover:text-brand-green transition-colors">Events</Link></li>
+              <li><Link to="/notices" className="hover:text-brand-green transition-colors">Notices</Link></li>
             </ul>
           </div>
 
