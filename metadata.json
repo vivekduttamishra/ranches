@@ -1,0 +1,7 @@
+{
+  "name": "Mahaveer Ranches Official",
+  "description": "Official community portal for Mahaveer Ranches Apartment Owners Association, Hosa Road, Bangalore.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

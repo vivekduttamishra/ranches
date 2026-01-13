@@ -1,0 +1,105 @@
+
+import React from 'react';
+import { Calendar, MapPin, Ticket, Sparkles } from 'lucide-react';
+
+export const EventsPage: React.FC = () => {
+  const events = [
+    {
+      title: "Republic Day 2026",
+      date: "Jan 26, 2026",
+      time: "08:30 AM",
+      location: "Main Flag Hoisting Area",
+      description: "Flag hoisting ceremony followed by breakfast and patriotic cultural performances by our little residents.",
+      type: "National Event",
+      color: "blue",
+      link: "/events/republic-day-2026"
+    },
+    {
+      title: "Saraswati Pooja",
+      date: "Jan 23, 2026",
+      time: "10:00 AM",
+      location: "Clubhouse Temple Area",
+      description: "Celebrating Vasant Panchami with community pooja and cultural activities for students.",
+      type: "Cultural",
+      color: "yellow",
+      link: "/events/saraswati-pooja-2026"
+    },
+    {
+      title: "Makar Sankranti",
+      date: "Jan 14, 2026",
+      time: "03:00 PM",
+      location: "Grand Lawn",
+      description: "Kite flying competition and traditional Sankranti feast.",
+      type: "Festival",
+      color: "green",
+      link: "/events/sankranti-2026"
+    },
+    {
+      title: "Lohri Night",
+      date: "Jan 13, 2026",
+      time: "06:30 PM",
+      location: "Central Courtyard",
+      description: "The warmth of bonfire, traditional dhol, and community celebration.",
+      type: "Festivity",
+      color: "orange",
+      link: "/events/lohri-2026"
+    }
+  ];
+
+  return (
+    <section className="py-32 bg-gray-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+          <div className="space-y-6">
+            <div className="inline-flex items-center space-x-3 text-orange-500 bg-orange-50 px-6 py-2 rounded-full">
+              <Sparkles size={20} />
+              <span className="font-bold tracking-[0.2em] uppercase text-xs">Happening Soon</span>
+            </div>
+            <h2 className="text-5xl md:text-8xl font-outfit font-bold text-gray-900 tracking-tighter">Events.</h2>
+          </div>
+          <p className="text-xl text-gray-500 max-w-sm font-medium italic">Building memories together, one celebration at a time.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {events.map((evt, idx) => (
+            <div key={idx} className="bg-white rounded-[48px] overflow-hidden shadow-xl border border-gray-100 group">
+              <div className="p-10 md:p-14 space-y-8">
+                <div className="flex justify-between items-start">
+                  <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-${evt.color}-50 text-${evt.color}-600 border border-${evt.color}-100`}>
+                    {evt.type}
+                  </div>
+                  <div className="text-right">
+                    <p className="text-3xl font-bold text-gray-900">{evt.date.split(',')[0]}</p>
+                    <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">{evt.date.split(',')[1]}</p>
+                  </div>
+                </div>
+
+                <h3 className="text-4xl font-outfit font-bold text-gray-900 group-hover:text-brand-green transition-colors">{evt.title}</h3>
+                
+                <p className="text-lg text-gray-500 leading-relaxed font-medium">
+                  {evt.description}
+                </p>
+
+                <div className="space-y-4 pt-4">
+                  <div className="flex items-center space-x-3 text-gray-600">
+                    <Calendar size={18} className="text-brand-green" />
+                    <span className="font-bold text-sm uppercase tracking-wide">{evt.time}</span>
+                  </div>
+                  <div className="flex items-center space-x-3 text-gray-600">
+                    <MapPin size={18} className="text-brand-green" />
+                    <span className="font-bold text-sm uppercase tracking-wide">{evt.location}</span>
+                  </div>
+                </div>
+
+                <button className="w-full bg-gray-900 text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center space-x-3 hover:bg-brand-green transition-all shadow-lg active:scale-95">
+                  <Ticket size={20} />
+                  <span>Resident Registration</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
