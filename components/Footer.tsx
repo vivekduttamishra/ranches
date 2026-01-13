@@ -13,12 +13,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
           <div className="lg:col-span-5 space-y-10">
-            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onNavigate('home')}>
-               <svg className="h-12 w-12" viewBox="0 0 100 100" fill="none">
-                  <path d="M50 25L52 35L62 38L52 41L50 51L48 41L38 38L48 35L50 25Z" fill="#6da634"/>
-               </svg>
-               <div className="flex flex-col">
-                  <span className="text-white font-outfit font-bold text-2xl leading-none tracking-tight">MAHAVEER</span>
+            <div className="flex items-center cursor-pointer" onClick={() => onNavigate('home')}>
+               <img 
+                 src="logo.png" 
+                 alt="Mahaveer Ranches" 
+                 className="h-16 w-auto brightness-0 invert opacity-90"
+                 onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                 }}
+               />
+               <div className="flex flex-col ml-3">
+                  <span className="text-white font-outfit font-bold text-2xl leading-none tracking-tight uppercase">MAHAVEER</span>
                   <span className="brand-green font-outfit font-bold text-3xl leading-none italic">Ranches</span>
                </div>
             </div>

@@ -3,41 +3,41 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles, ArrowRight } from 'lucide-react';
 
 interface CommunityCarouselProps {
-  onEventClick: () => void;
+  onEventClick: (id: string) => void;
 }
 
 const SLIDES = [
   {
+    id: "sankranti-2026",
     title: "Makar Sankranti",
     date: "Jan 14",
     subtitle: "A sky full of colors: Kite flying festival at the main lawns.",
     image: "https://images.unsplash.com/photo-1590422955512-1f4863f6e522?auto=format&fit=crop&w=1200&q=80",
-    tag: "Cultural",
-    link: "/events/sankranti-2026"
+    tag: "Cultural"
   },
   {
+    id: "lohri-2026",
     title: "Lohri Night",
     date: "Jan 13",
     subtitle: "Community bonfire, dhol, and traditional festivities for all residents.",
     image: "https://images.unsplash.com/photo-1574092524457-3f82e66699da?auto=format&fit=crop&w=1200&q=80",
-    tag: "Festivity",
-    link: "/events/lohri-2026"
+    tag: "Festivity"
   },
   {
+    id: "republic-day-2026",
     title: "Republic Day 2026",
     date: "Jan 26",
     subtitle: "Celebrating the spirit of India with flag hoisting and cultural parade.",
     image: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=1200&q=80",
-    tag: "National Day",
-    link: "/events/republic-day-2026"
+    tag: "National Day"
   },
   {
+    id: "saraswati-pooja-2026",
     title: "Saraswati Pooja",
     date: "Jan 23",
     subtitle: "Invoking the goddess of knowledge in our beautifully lit clubhouse.",
     image: "https://images.unsplash.com/photo-1614700166444-48677a561172?auto=format&fit=crop&w=1200&q=80",
-    tag: "Tradition",
-    link: "/events/saraswati-pooja-2026"
+    tag: "Tradition"
   }
 ];
 
@@ -107,7 +107,7 @@ export const CommunityCarousel: React.FC<CommunityCarouselProps> = ({ onEventCli
                 </p>
 
                 <button 
-                  onClick={onEventClick}
+                  onClick={() => onEventClick(slide.id)}
                   className="inline-flex items-center space-x-3 bg-white text-gray-900 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-brand-green hover:text-white transition-all transform hover:-translate-y-1 shadow-2xl"
                 >
                   <span>Event Details</span>

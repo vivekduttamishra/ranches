@@ -2,47 +2,51 @@
 import React from 'react';
 import { Calendar, MapPin, Ticket, Sparkles } from 'lucide-react';
 
-export const EventsPage: React.FC = () => {
+interface EventsPageProps {
+  onEventClick: (id: string) => void;
+}
+
+export const EventsPage: React.FC<EventsPageProps> = ({ onEventClick }) => {
   const events = [
     {
+      id: "republic-day-2026",
       title: "Republic Day 2026",
       date: "Jan 26, 2026",
       time: "08:30 AM",
       location: "Main Flag Hoisting Area",
       description: "Flag hoisting ceremony followed by breakfast and patriotic cultural performances by our little residents.",
       type: "National Event",
-      color: "blue",
-      link: "/events/republic-day-2026"
+      color: "blue"
     },
     {
+      id: "saraswati-pooja-2026",
       title: "Saraswati Pooja",
       date: "Jan 23, 2026",
       time: "10:00 AM",
       location: "Clubhouse Temple Area",
       description: "Celebrating Vasant Panchami with community pooja and cultural activities for students.",
       type: "Cultural",
-      color: "yellow",
-      link: "/events/saraswati-pooja-2026"
+      color: "yellow"
     },
     {
+      id: "sankranti-2026",
       title: "Makar Sankranti",
       date: "Jan 14, 2026",
       time: "03:00 PM",
       location: "Grand Lawn",
       description: "Kite flying competition and traditional Sankranti feast.",
       type: "Festival",
-      color: "green",
-      link: "/events/sankranti-2026"
+      color: "green"
     },
     {
+      id: "lohri-2026",
       title: "Lohri Night",
       date: "Jan 13, 2026",
       time: "06:30 PM",
       location: "Central Courtyard",
       description: "The warmth of bonfire, traditional dhol, and community celebration.",
       type: "Festivity",
-      color: "orange",
-      link: "/events/lohri-2026"
+      color: "orange"
     }
   ];
 
@@ -62,7 +66,11 @@ export const EventsPage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {events.map((evt, idx) => (
-            <div key={idx} className="bg-white rounded-[48px] overflow-hidden shadow-xl border border-gray-100 group">
+            <div 
+              key={idx} 
+              className="bg-white rounded-[48px] overflow-hidden shadow-xl border border-gray-100 group cursor-pointer transform hover:-translate-y-1 transition-all"
+              onClick={() => onEventClick(evt.id)}
+            >
               <div className="p-10 md:p-14 space-y-8">
                 <div className="flex justify-between items-start">
                   <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-${evt.color}-50 text-${evt.color}-600 border border-${evt.color}-100`}>
@@ -93,7 +101,7 @@ export const EventsPage: React.FC = () => {
 
                 <button className="w-full bg-gray-900 text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center space-x-3 hover:bg-brand-green transition-all shadow-lg active:scale-95">
                   <Ticket size={20} />
-                  <span>Resident Registration</span>
+                  <span>View Details & Register</span>
                 </button>
               </div>
             </div>

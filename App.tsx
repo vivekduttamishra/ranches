@@ -12,20 +12,27 @@ import { Gallery } from './components/Gallery';
 import { EventsPage } from './components/EventsPage';
 import { Notices } from './components/Notices';
 import { Connect } from './components/Connect';
+import { EventDetail } from './components/EventDetail';
 
-export type View = 'home' | 'gallery' | 'events' | 'notices' | 'connect';
+export type View = 'home' | 'gallery' | 'events' | 'notices' | 'connect' | 'event-detail';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('home');
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   // Scroll to top on view change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentView]);
+  }, [currentView, selectedEventId]);
 
-  const navigateTo = (view: View) => {
+  const navigateTo = (view: View, eventId?: string) => {
     setCurrentView(view);
+    if (eventId) {
+      setSelectedEventId(eventId);
+    } else {
+      setSelectedEventId(null);
+    }
   };
 
   const renderContent = () => {
@@ -33,7 +40,9 @@ const App: React.FC = () => {
       case 'gallery':
         return <Gallery />;
       case 'events':
-        return <EventsPage />;
+        return <EventsPage onEventClick={(id) => navigateTo('event-detail', id)} />;
+      case 'event-detail':
+        return <EventDetail eventId={selectedEventId} onBack={() => navigateTo('events')} />;
       case 'notices':
         return <Notices />;
       case 'connect':
@@ -44,7 +53,7 @@ const App: React.FC = () => {
             <Hero onActionClick={() => navigateTo('events')} />
             <div id="community">
               <Features />
-              <CommunityCarousel onEventClick={() => navigateTo('events')} />
+              <CommunityCarousel onEventClick={(id) => navigateTo('event-detail', id)} />
             </div>
             <div id="amenities">
               <Amenities />
@@ -63,7 +72,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <Header 
-        currentView={currentView}
+        currentView={currentView === 'event-detail' ? 'events' : currentView}
         onMemberClick={() => setIsLoginModalOpen(true)} 
         onNavigate={navigateTo}
       />
