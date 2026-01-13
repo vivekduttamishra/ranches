@@ -1,0 +1,21 @@
+
+{
+  "short_name": "MR Official",
+  "name": "Mahaveer Ranches Official Portal",
+  "icons": [
+    {
+      "src": "https://vivekduttamishra.github.io/ranches/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://vivekduttamishra.github.io/ranches/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6da634",
+  "background_color": "#ffffff"
+}

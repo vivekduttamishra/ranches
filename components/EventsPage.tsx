@@ -1,55 +1,13 @@
 
 import React from 'react';
 import { Calendar, MapPin, Ticket, Sparkles } from 'lucide-react';
+import { ALL_EVENTS } from '../data/events';
 
 interface EventsPageProps {
   onEventClick: (id: string) => void;
 }
 
 export const EventsPage: React.FC<EventsPageProps> = ({ onEventClick }) => {
-  const events = [
-    {
-      id: "republic-day-2026",
-      title: "Republic Day 2026",
-      date: "Jan 26, 2026",
-      time: "08:30 AM",
-      location: "Main Flag Hoisting Area",
-      description: "Flag hoisting ceremony followed by breakfast and patriotic cultural performances by our little residents.",
-      type: "National Event",
-      color: "blue"
-    },
-    {
-      id: "saraswati-pooja-2026",
-      title: "Saraswati Pooja",
-      date: "Jan 23, 2026",
-      time: "10:00 AM",
-      location: "Clubhouse Temple Area",
-      description: "Celebrating Vasant Panchami with community pooja and cultural activities for students.",
-      type: "Cultural",
-      color: "yellow"
-    },
-    {
-      id: "sankranti-2026",
-      title: "Makar Sankranti",
-      date: "Jan 14, 2026",
-      time: "03:00 PM",
-      location: "Grand Lawn",
-      description: "Kite flying competition and traditional Sankranti feast.",
-      type: "Festival",
-      color: "green"
-    },
-    {
-      id: "lohri-2026",
-      title: "Lohri Night",
-      date: "Jan 13, 2026",
-      time: "06:30 PM",
-      location: "Central Courtyard",
-      description: "The warmth of bonfire, traditional dhol, and community celebration.",
-      type: "Festivity",
-      color: "orange"
-    }
-  ];
-
   return (
     <section className="py-32 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,15 +23,20 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onEventClick }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {events.map((evt, idx) => (
+          {ALL_EVENTS.map((evt) => (
             <div 
-              key={idx} 
+              key={evt.id} 
               className="bg-white rounded-[48px] overflow-hidden shadow-xl border border-gray-100 group cursor-pointer transform hover:-translate-y-1 transition-all"
               onClick={() => onEventClick(evt.id)}
             >
               <div className="p-10 md:p-14 space-y-8">
                 <div className="flex justify-between items-start">
-                  <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-${evt.color}-50 text-${evt.color}-600 border border-${evt.color}-100`}>
+                  <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest ${
+                    evt.color === 'blue' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                    evt.color === 'yellow' ? 'bg-yellow-50 text-yellow-600 border-yellow-100' :
+                    evt.color === 'green' ? 'bg-green-50 text-green-600 border-green-100' :
+                    'bg-orange-50 text-orange-600 border-orange-100'
+                  } border`}>
                     {evt.type}
                   </div>
                   <div className="text-right">

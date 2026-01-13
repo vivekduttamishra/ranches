@@ -5,7 +5,6 @@ import { Hero } from './components/Hero';
 import { CommunityCarousel } from './components/CommunityCarousel';
 import { Features } from './components/Features';
 import { Amenities } from './components/Amenities';
-import { Location } from './components/Location';
 import { Footer } from './components/Footer';
 import { MemberPortalModal } from './components/MemberPortalModal';
 import { Gallery } from './components/Gallery';
@@ -13,8 +12,7 @@ import { EventsPage } from './components/EventsPage';
 import { Notices } from './components/Notices';
 import { Connect } from './components/Connect';
 import { EventDetail } from './components/EventDetail';
-
-export type View = 'home' | 'gallery' | 'events' | 'notices' | 'connect' | 'event-detail';
+import { View } from './types';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('home');

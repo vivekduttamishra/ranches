@@ -1,35 +1,9 @@
 
 import React from 'react';
 import { Bell, AlertCircle, FileText, Download } from 'lucide-react';
+import { NOTICES_DATA } from '../data/notices';
 
 export const Notices: React.FC = () => {
-  const announcements = [
-    {
-      id: "N-2026-001",
-      title: "Republic Day Preparation & Traffic Advisory",
-      date: "Jan 10, 2026",
-      category: "Maintenance",
-      priority: "High",
-      excerpt: "Please note the temporary traffic changes for the upcoming Republic Day event flag hoisting area."
-    },
-    {
-      id: "N-2026-002",
-      title: "Clubhouse Renovation Schedule",
-      date: "Jan 05, 2026",
-      category: "Facility",
-      priority: "Normal",
-      excerpt: "The Badminton court will be closed for periodic maintenance on Jan 15th and 16th."
-    },
-    {
-      id: "N-2026-003",
-      title: "Annual AOA General Meeting Minutes",
-      date: "Dec 20, 2025",
-      category: "Governance",
-      priority: "Normal",
-      excerpt: "Minutes of the meeting held on Dec 15th are now available for resident review."
-    }
-  ];
-
   return (
     <section className="py-32 bg-white min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +16,7 @@ export const Notices: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          {announcements.map((note) => (
+          {NOTICES_DATA.map((note) => (
             <div key={note.id} className="bg-gray-50 rounded-[32px] p-8 md:p-12 hover:bg-green-50 transition-colors border border-gray-100 group">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                 <div className="flex items-center space-x-4">

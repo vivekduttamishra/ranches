@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-import { View } from '../App';
+// Fix: Import View type from '../types' instead of '../App'
+import { View } from '../types';
 
 interface FooterProps {
   onNavigate: (view: View) => void;

@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { Menu, X, User } from 'lucide-react';
-import { View } from '../App';
+// Fix: Import View type from '../types' instead of '../App'
+import { View } from '../types';
 
 interface HeaderProps {
   currentView: View;

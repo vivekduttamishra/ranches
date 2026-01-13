@@ -1,58 +1,24 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles, ArrowRight } from 'lucide-react';
+import { ALL_EVENTS } from '../data/events';
 
 interface CommunityCarouselProps {
   onEventClick: (id: string) => void;
 }
-
-const SLIDES = [
-  {
-    id: "sankranti-2026",
-    title: "Makar Sankranti",
-    date: "Jan 14",
-    subtitle: "A sky full of colors: Kite flying festival at the main lawns.",
-    image: "https://images.unsplash.com/photo-1590422955512-1f4863f6e522?auto=format&fit=crop&w=1200&q=80",
-    tag: "Cultural"
-  },
-  {
-    id: "lohri-2026",
-    title: "Lohri Night",
-    date: "Jan 13",
-    subtitle: "Community bonfire, dhol, and traditional festivities for all residents.",
-    image: "https://images.unsplash.com/photo-1574092524457-3f82e66699da?auto=format&fit=crop&w=1200&q=80",
-    tag: "Festivity"
-  },
-  {
-    id: "republic-day-2026",
-    title: "Republic Day 2026",
-    date: "Jan 26",
-    subtitle: "Celebrating the spirit of India with flag hoisting and cultural parade.",
-    image: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=1200&q=80",
-    tag: "National Day"
-  },
-  {
-    id: "saraswati-pooja-2026",
-    title: "Saraswati Pooja",
-    date: "Jan 23",
-    subtitle: "Invoking the goddess of knowledge in our beautifully lit clubhouse.",
-    image: "https://images.unsplash.com/photo-1614700166444-48677a561172?auto=format&fit=crop&w=1200&q=80",
-    tag: "Tradition"
-  }
-];
 
 export const CommunityCarousel: React.FC<CommunityCarouselProps> = ({ onEventClick }) => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev === SLIDES.length - 1 ? 0 : prev + 1));
+      setCurrent((prev) => (prev === ALL_EVENTS.length - 1 ? 0 : prev + 1));
     }, 8000);
     return () => clearInterval(timer);
   }, []);
 
-  const next = () => setCurrent((prev) => (prev === SLIDES.length - 1 ? 0 : prev + 1));
-  const prev = () => setCurrent((prev) => (prev === 0 ? SLIDES.length - 1 : prev - 1));
+  const next = () => setCurrent((prev) => (prev === ALL_EVENTS.length - 1 ? 0 : prev + 1));
+  const prev = () => setCurrent((prev) => (prev === 0 ? ALL_EVENTS.length - 1 : prev - 1));
 
   return (
     <section className="py-24 bg-gray-50 overflow-hidden relative" id="events">
@@ -76,9 +42,9 @@ export const CommunityCarousel: React.FC<CommunityCarouselProps> = ({ onEventCli
         </div>
 
         <div className="relative h-[600px] md:h-[750px] rounded-[64px] overflow-hidden shadow-3xl bg-gray-900">
-          {SLIDES.map((slide, index) => (
+          {ALL_EVENTS.map((slide, index) => (
             <div 
-              key={index}
+              key={slide.id}
               className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === current ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-40 scale-110 pointer-events-none'}`}
             >
               <img 
@@ -91,10 +57,10 @@ export const CommunityCarousel: React.FC<CommunityCarouselProps> = ({ onEventCli
               <div className="absolute bottom-20 left-10 md:left-24 right-10 max-w-4xl">
                 <div className="flex items-center space-x-4 mb-8">
                   <div className="bg-brand-green text-white px-5 py-2 rounded-xl text-sm font-bold uppercase tracking-widest shadow-lg">
-                    {slide.tag}
+                    {slide.tag || 'Event'}
                   </div>
                   <div className="bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-xl text-sm font-bold border border-white/20">
-                    {slide.date}
+                    {slide.date.split(',')[0]}
                   </div>
                 </div>
                 
@@ -103,7 +69,7 @@ export const CommunityCarousel: React.FC<CommunityCarouselProps> = ({ onEventCli
                 </h3>
                 
                 <p className="text-xl md:text-3xl text-white/70 font-medium max-w-2xl mb-12 leading-relaxed">
-                  {slide.subtitle}
+                  {slide.description}
                 </p>
 
                 <button 
